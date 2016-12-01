@@ -2,7 +2,7 @@
 file(GLOB sources_localdir *.cpp *.h)
 
 set(sources_RFIDCtrl
-  ${sources_localdir}
+    ${sources_localdir}
 )
 
 include_directories(
@@ -12,5 +12,14 @@ include_directories(
 
 # Create executable
 add_executable(RFIDCtrl
-  ${sources_RFIDCtrl}
+    ${sources_RFIDCtrl}
 )
+
+# Link libraries
+target_link_libraries(RFIDCtrl
+    ${LIBNFC_LIBRARY}
+    ${LIBFREEFARE_LIBRARY}
+)
+
+# Optimise compilation
+cotire(RFIDCtrl)
